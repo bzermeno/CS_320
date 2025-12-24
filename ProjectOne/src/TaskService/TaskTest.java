@@ -56,7 +56,7 @@ class TaskTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Task("100", "Setup", null);
         });
-		// lastName is too long
+		// description is too long
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Task("100", "Setup", "setup task 1234567890 1234567890 1234567890 1234567890");
         });
@@ -86,10 +86,11 @@ class TaskTest {
 		assertThrows(IllegalArgumentException.class, () -> {
 			task.setDescription(null);
         });
-		// lastName is too long
+		// description is too long
 		assertThrows(IllegalArgumentException.class, () -> {
 			task.setDescription("Cleanup area 1234567890 1234567890 1234567890 1234567890");
         });
 	}	
 
 }
+
