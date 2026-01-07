@@ -1,4 +1,19 @@
 # CS_320
+
+## Project One: Service Management System
+
+Project One is a Java-based application demonstrating software testing and quality assurance principles. The project implements three independent service modules, each with comprehensive unit testing and input validation:
+
+- **ContactService**: Manages contact information with fields for contact ID (max 10 chars), first name (max 10 chars), last name (max 10 chars), phone number (exactly 10 digits), and address (max 30 chars). Supports adding, deleting, and updating contacts with unique IDs.
+
+- **TaskService**: Manages tasks with fields for task ID (max 10 chars), name (max 20 chars), and description (max 50 chars). Provides functionality to create, delete, and update tasks.
+
+- **AppointmentService**: Manages appointments with fields for appointment ID (max 10 chars), appointment date (must be in the future), and description (max 50 chars). Enables scheduling and managing appointments with validation.
+
+Each service implements CRUD operations using HashMap for in-memory storage, ensures data integrity through validation, and includes comprehensive JUnit tests to verify functionality and edge cases.
+
+---
+
 To ensure that my code, program, or software is both functional and secure, I would follow a comprehensive testing and security strategy. Functionality begins with unit testing, where individual components are tested in isolation. Integration testing follows, verifying that different parts of the program work together correctly. End-to-end testing simulates real-world usage to ensure the complete system performs as expected. Incorporating debugging tools and logging helps trace and fix issues effectively, while peer code reviews enhance quality by catching errors and suggesting improvements. Using version control systems like Git wold allow me to tracking changes and maintaining a stable codebase.
 
 Security involves several best practices. I would start by validating all user inputs to prevent injection attacks, such as SQL injection or cross-site scripting (XSS). I would also implement robust authentication and authorization, using secure protocols like OAuth2 or JWT, and ensure that sensitive data is encrypted both in transit (via TLS/SSL) and at rest. Lastly, I would perform both static and dynamic security testing, and consider penetration testing when appropriate.
