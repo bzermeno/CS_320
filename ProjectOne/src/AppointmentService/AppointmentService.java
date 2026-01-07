@@ -32,4 +32,9 @@ public class AppointmentService {
     public Appointment getAppointment(String appointmentID) {
         return appointments.get(appointmentID);
     }
+    
+    // Public method to retrieve all appointments for ServiceManager
+    public HashMap<String, Appointment> getAllAppointments() {
+        return new HashMap<>(appointments);
+    }
 }

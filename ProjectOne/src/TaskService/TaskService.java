@@ -50,4 +50,9 @@ public class TaskService {
         }
         return task;
     }
+    
+    // Public method to retrieve all tasks for ServiceManager
+    public Map<String, Task> getAllTasks() {
+        return new HashMap<>(tasks);
+    }
 }

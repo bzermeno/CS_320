@@ -60,4 +60,9 @@ public class ContactService {
         }
         return contact;
     }
+    
+    // Public method to retrieve all contacts for ServiceManager
+    public Map<String, Contact> getAllContacts() {
+        return new HashMap<>(contacts);
+    }
 }
