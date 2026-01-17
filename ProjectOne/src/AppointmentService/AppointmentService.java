@@ -14,6 +14,9 @@ public class AppointmentService {
 
     // Add Appointment with unique appointmentID to HashMap
     public void addAppointment(Appointment appointment) {
+        if (appointment == null) {
+            throw new IllegalArgumentException("Appointment must not be null.");
+        }
         if (appointments.containsKey(appointment.getAppointmentID())) {
             throw new IllegalArgumentException("Appointment ID already exists.");
         }

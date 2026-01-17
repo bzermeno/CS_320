@@ -25,7 +25,7 @@ public class TaskService {
     }
 
     public void deleteTask(String taskID) {
-        // contactID does not exist
+        // taskID does not exist
     	if (!tasks.containsKey(taskID)) {
             throw new IllegalArgumentException("Task ID not found");
         }

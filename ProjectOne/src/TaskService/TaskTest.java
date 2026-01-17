@@ -51,8 +51,8 @@ class TaskTest {
 	}
 	
 	@Test
-	void testInvalidLastName() {
-		// lastName is null
+	void testInvalidDescription() {
+		// description is null
 		assertThrows(IllegalArgumentException.class, () -> {
 			new Task("100", "Setup", null);
         });
