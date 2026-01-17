@@ -82,7 +82,7 @@ class TaskTest {
 		// Assign description with new valid attribute
 		task.setDescription("Cleanup area");
 		assertEquals(task.getDescription(), "Cleanup area");
-		// decription is null
+		// description is null
 		assertThrows(IllegalArgumentException.class, () -> {
 			task.setDescription(null);
         });
