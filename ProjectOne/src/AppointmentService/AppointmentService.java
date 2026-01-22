@@ -2,8 +2,7 @@
  *  Date: June 15, 2025 
  *  Course ID: CS-320
  *  Description: AppointmentService class allows user to add Appointment objects, delete
- *  an appointment identified by appointmentID. Appointment fields cannot be edited after creation,
- *  except for appointmentID, which is immutable.
+ *  an appointment identified by appointmentID. The appointmentID is immutable.
  *  This is the service layer in the layered architecture that uses AppointmentRepository for data access.
  */
 package AppointmentService;
