@@ -1,35 +1,41 @@
 /*  Author Name: Beau Zermeno
  *  Date: June 15, 2025 
  *  Course ID: CS-320
- *  Description: ContactService class allows user to add Contact objects to the HashMap contacts, delete
+ *  Description: ContactService class allows user to add Contact objects, delete
  *  a contact identified by contactID, and edit contact fields, except for contactID, which is immutable.
+ *  This is the service layer in the layered architecture that uses ContactRepository for data access.
  */
 package ContactService;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class ContactService {
-	// HashMap to hold Contact objects
-    private final Map<String, Contact> contacts = new HashMap<>();
+    // Repository for data access
+    private final ContactRepository contactRepository;
+    
+    public ContactService() {
+        this.contactRepository = new ContactRepository();
+    }
+    
+    public ContactService(ContactRepository contactRepository) {
+        this.contactRepository = contactRepository;
+    }
     
     public void addContact(Contact contact) {
         
     	if (contact == null) {
             throw new IllegalArgumentException("Contact must be not be null.");
         }
-        if (contacts.containsKey(contact.getContactID())) {
+        if (contactRepository.existsById(contact.getContactID())) {
         	throw new IllegalArgumentException("Contact must have a unique ID.");
         }
-        contacts.put(contact.getContactID(), contact);
+        contactRepository.save(contact);
     }
 
     public void deleteContact(String contactID) {
         // contactID does not exist
-    	if (!contacts.containsKey(contactID)) {
+    	if (!contactRepository.existsById(contactID)) {
             throw new IllegalArgumentException("Contact ID not found");
         }
-        contacts.remove(contactID);
+        contactRepository.deleteById(contactID);
     }
 
     // Functions allow user to assign new values to contact fields.
@@ -54,7 +60,7 @@ public class ContactService {
     }
     
     private Contact getContact(String contactID) {
-        Contact contact = contacts.get(contactID);
+        Contact contact = contactRepository.findById(contactID);
         if (contact == null) {
             throw new IllegalArgumentException("Contact ID not found");
         }

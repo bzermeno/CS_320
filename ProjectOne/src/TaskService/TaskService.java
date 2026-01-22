@@ -1,35 +1,41 @@
 /*  Author Name: Beau Zermeno
  *  Date: June 15, 2025 
  *  Course ID: CS-320
- *  Description: TaskService class allows user to add Task objects to the HashMap tasks, delete
+ *  Description: TaskService class allows user to add Task objects, delete
  *  a task identified by taskID, and edit task fields, except for taskID, which is immutable.
+ *  This is the service layer in the layered architecture that uses TaskRepository for data access.
  */
 package TaskService;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class TaskService {
-	// HashMap to hold Task objects
-    private final Map<String, Task> tasks = new HashMap<>();
+    // Repository for data access
+    private final TaskRepository taskRepository;
+    
+    public TaskService() {
+        this.taskRepository = new TaskRepository();
+    }
+    
+    public TaskService(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
+    }
     
     public void addTask (Task task) {
         
     	if (task == null) {
             throw new IllegalArgumentException("Task must be not be null.");
         }
-        if (tasks.containsKey(task.getTaskID())) {
+        if (taskRepository.existsById(task.getTaskID())) {
         	throw new IllegalArgumentException("Task must have a unique ID.");
         }
-        tasks.put(task.getTaskID(), task);
+        taskRepository.save(task);
     }
 
     public void deleteTask(String taskID) {
         // contactID does not exist
-    	if (!tasks.containsKey(taskID)) {
+    	if (!taskRepository.existsById(taskID)) {
             throw new IllegalArgumentException("Task ID not found");
         }
-        tasks.remove(taskID);
+        taskRepository.deleteById(taskID);
     }
 
     // Functions allow user to assign new values to task fields.
@@ -44,7 +50,7 @@ public class TaskService {
     }
     
     private Task getTask(String taskID) {
-        Task task = tasks.get(taskID);
+        Task task = taskRepository.findById(taskID);
         if (task == null) {
             throw new IllegalArgumentException("Task ID not found");
         }
