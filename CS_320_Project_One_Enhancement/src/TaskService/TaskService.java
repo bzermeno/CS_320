@@ -45,13 +45,12 @@ public class TaskService {
      * Business logic: Validates task and ensures unique ID before saving.
      * 
      * @param task The Task object to add
-     * @throws NullPointerException if task is null
-     * @throws IllegalArgumentException if task ID already exists
+     * @throws IllegalArgumentException if task is null or task ID already exists
      */
     public void addTask (Task task) {
         // Business rule: Task must not be null
         if (task == null) {
-            throw new NullPointerException("Task must be not be null.");
+            throw new IllegalArgumentException("Task must not be null.");
         }
         // Delegate to DAO layer for persistence
         taskDAO.save(task);
@@ -75,8 +74,7 @@ public class TaskService {
      * 
      * @param taskID The unique identifier of the task
      * @param name The new name value
-     * @throws NullPointerException if taskID doesn't exist
-     * @throws IllegalArgumentException if validation fails
+     * @throws IllegalArgumentException if taskID doesn't exist or validation fails
      */
     public void updateName(String taskID, String name) {
         Task task = getTask(taskID);
@@ -90,8 +88,7 @@ public class TaskService {
      * 
      * @param taskID The unique identifier of the task
      * @param description The new description value
-     * @throws NullPointerException if taskID doesn't exist
-     * @throws IllegalArgumentException if validation fails
+     * @throws IllegalArgumentException if taskID doesn't exist or validation fails
      */
     public void updateDescription(String taskID, String description) {
         Task task = getTask(taskID);
@@ -105,10 +102,10 @@ public class TaskService {
      * 
      * @param taskID The unique identifier of the task
      * @return The Task object
-     * @throws NullPointerException if taskID doesn't exist
+     * @throws IllegalArgumentException if taskID doesn't exist
      */
     private Task getTask(String taskID) {
         return taskDAO.findById(taskID)
-            .orElseThrow(() -> new NullPointerException("Task ID not found"));
+            .orElseThrow(() -> new IllegalArgumentException("Task ID not found"));
     }
 }

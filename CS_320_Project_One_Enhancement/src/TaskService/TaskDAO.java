@@ -31,7 +31,7 @@ public class TaskDAO {
      */
     public void save(Task task) {
         if (task == null) {
-            throw new NullPointerException("Task must not be null.");
+            throw new IllegalArgumentException("Task must not be null.");
         }
         if (tasks.containsKey(task.getTaskID())) {
             throw new IllegalArgumentException("Task must have a unique ID.");
@@ -47,7 +47,7 @@ public class TaskDAO {
      */
     public void update(Task task) {
         if (task == null) {
-            throw new NullPointerException("Task must not be null.");
+            throw new IllegalArgumentException("Task must not be null.");
         }
         if (!tasks.containsKey(task.getTaskID())) {
             throw new IllegalArgumentException("Task ID not found");

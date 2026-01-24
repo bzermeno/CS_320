@@ -50,7 +50,7 @@ public class ContactService {
     public void addContact(Contact contact) {
         // Business rule: Contact must not be null
         if (contact == null) {
-            throw new IllegalArgumentException("Contact must be not be null.");
+            throw new IllegalArgumentException("Contact must not be null.");
         }
         // Delegate to DAO layer for persistence
         contactDAO.save(contact);
