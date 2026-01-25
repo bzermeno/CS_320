@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Collection;
 import java.util.ArrayList;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class ContactRepository {
     // HashMap to hold Contact objects
     private final Map<String, Contact> contacts = new HashMap<>();

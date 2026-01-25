@@ -8,14 +8,12 @@
 package TaskService;
 
 import java.util.Collection;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TaskService {
     // Repository for data access
     private final TaskRepository taskRepository;
-    
-    public TaskService() {
-        this.taskRepository = new TaskRepository();
-    }
     
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;

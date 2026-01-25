@@ -28,7 +28,8 @@ public class AppointmentServiceTest {
     
     @BeforeEach
     public void setUp() {
-        service = new AppointmentService();
+        AppointmentRepository repository = new AppointmentRepository();
+        service = new AppointmentService(repository);
     }
 
     @Test

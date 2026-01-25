@@ -9,7 +9,9 @@ package AppointmentService;
 import java.util.HashMap;
 import java.util.Collection;
 import java.util.ArrayList;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class AppointmentRepository {
     // HashMap to store Appointment objects
     private final HashMap<String, Appointment> appointments = new HashMap<>();

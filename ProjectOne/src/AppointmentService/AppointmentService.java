@@ -8,14 +8,12 @@
 package AppointmentService;
 
 import java.util.Collection;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AppointmentService {
     // Repository for data access
     private final AppointmentRepository appointmentRepository;
-    
-    public AppointmentService() {
-        this.appointmentRepository = new AppointmentRepository();
-    }
     
     public AppointmentService(AppointmentRepository appointmentRepository) {
         this.appointmentRepository = appointmentRepository;

@@ -8,14 +8,12 @@
 package ContactService;
 
 import java.util.Collection;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ContactService {
     // Repository for data access
     private final ContactRepository contactRepository;
-    
-    public ContactService() {
-        this.contactRepository = new ContactRepository();
-    }
     
     public ContactService(ContactRepository contactRepository) {
         this.contactRepository = contactRepository;

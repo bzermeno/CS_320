@@ -17,7 +17,8 @@ class TaskServiceTest {
 
     @BeforeEach
     public void newTaskService() {
-        taskService = new TaskService();
+        TaskRepository repository = new TaskRepository();
+        taskService = new TaskService(repository);
         task = new Task("12345", "Setup", "Setup task");
         taskService.addTask(task);
     }

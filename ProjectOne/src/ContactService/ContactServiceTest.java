@@ -18,7 +18,8 @@ public class ContactServiceTest {
 
     @BeforeEach
     public void newContactService() {
-        contactService = new ContactService();
+        ContactRepository repository = new ContactRepository();
+        contactService = new ContactService(repository);
         contact = new Contact("12345", "John", "Doe", "1234567890", "123 Main St");
         contactService.addContact(contact);
     }

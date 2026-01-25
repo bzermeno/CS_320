@@ -10,7 +10,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Collection;
 import java.util.ArrayList;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class TaskRepository {
     // HashMap to hold Task objects
     private final Map<String, Task> tasks = new HashMap<>();

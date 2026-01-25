@@ -19,8 +19,8 @@ public class ContactController {
     
     private final ContactService contactService;
     
-    public ContactController() {
-        this.contactService = new ContactService();
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
     }
     
     /**

@@ -3,11 +3,12 @@
  *  Course ID: CS-320
  *  Description: Main Spring Boot Application class that starts the RESTful API server
  */
+package api;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = {"api", "ContactService", "TaskService", "AppointmentService"})
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
