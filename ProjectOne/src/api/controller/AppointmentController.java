@@ -39,9 +39,6 @@ public class AppointmentController {
     public ResponseEntity<Appointment> getAppointment(@PathVariable String id) {
         try {
             Appointment appointment = appointmentService.getAppointment(id);
-            if (appointment == null) {
-                return ResponseEntity.notFound().build();
-            }
             return ResponseEntity.ok(appointment);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.notFound().build();
