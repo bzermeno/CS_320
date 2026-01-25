@@ -25,6 +25,11 @@ public class AppointmentController {
         this.appointmentService = new AppointmentService();
     }
     
+    // Constructor for dependency injection (used in testing)
+    public AppointmentController(AppointmentService appointmentService) {
+        this.appointmentService = appointmentService;
+    }
+    
     /**
      * Create a new appointment
      * POST /api/appointments

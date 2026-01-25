@@ -25,6 +25,11 @@ public class TaskController {
         this.taskService = new TaskService();
     }
     
+    // Constructor for dependency injection (used in testing)
+    public TaskController(TaskService taskService) {
+        this.taskService = taskService;
+    }
+    
     /**
      * Create a new task
      * POST /api/tasks

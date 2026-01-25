@@ -25,6 +25,11 @@ public class ContactController {
         this.contactService = new ContactService();
     }
     
+    // Constructor for dependency injection (used in testing)
+    public ContactController(ContactService contactService) {
+        this.contactService = contactService;
+    }
+    
     /**
      * Create a new contact
      * POST /api/contacts
