@@ -59,6 +59,29 @@
             </plugin>
             
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>3.5.0</version>
+                <executions>
+                    <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
+                        <goals>
+                            <goal>add-test-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>src/ContactService</source>
+                                <source>src/TaskService</source>
+                                <source>src/AppointmentService</source>
+                                <source>src/com/snhu/cs320/controller/test</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <configuration>
@@ -68,21 +91,6 @@
                         <exclude>**/*Test.java</exclude>
                     </excludes>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>default-testCompile</id>
-                        <phase>test-compile</phase>
-                        <goals>
-                            <goal>testCompile</goal>
-                        </goals>
-                        <configuration>
-                            <testIncludes>
-                                <testInclude>**/*Test.java</testInclude>
-                            </testIncludes>
-                            <excludes combine.self="override"/>
-                        </configuration>
-                    </execution>
-                </executions>
             </plugin>
             
             <plugin>
@@ -92,7 +100,6 @@
                     <includes>
                         <include>**/*Test.java</include>
                     </includes>
-                    <testSourceDirectory>src</testSourceDirectory>
                 </configuration>
             </plugin>
         </plugins>

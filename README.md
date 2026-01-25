@@ -12,6 +12,67 @@ Project One is a Java-based application demonstrating software testing and quali
 
 Each service implements CRUD operations using HashMap for in-memory storage, ensures data integrity through validation, and includes comprehensive JUnit tests to verify functionality and edge cases.
 
+## Project One Enhancement: RESTful API Layer
+
+The enhancement adds a complete RESTful API layer to the Service Management System using Spring Boot, enabling HTTP-based interactions with the services. This architectural improvement transforms the application from a library-based system to a fully functional web service.
+
+### Key Features
+
+- **Spring Boot Framework**: Modern, production-ready REST API implementation
+- **RESTful Endpoints**: Complete CRUD operations via HTTP for all three services
+- **JSON Support**: Request and response handling with JSON format
+- **Input Validation**: Maintains all existing validation rules at the API layer
+- **Error Handling**: Centralized exception handling with meaningful error messages
+- **Integration Testing**: Comprehensive test coverage for API endpoints
+- **Documentation**: Complete API documentation with examples
+
+### Quick Start
+
+```bash
+cd ProjectOne
+
+# Build the project
+mvn clean install
+
+# Run the application
+mvn spring-boot:run
+
+# The API will be available at http://localhost:8080
+```
+
+### API Examples
+
+**Create a contact:**
+```bash
+curl -X POST http://localhost:8080/api/contacts \
+  -H "Content-Type: application/json" \
+  -d '{"contactID":"001","firstName":"John","lastName":"Doe","phone":"1234567890","address":"123 Main St"}'
+```
+
+**Update a task:**
+```bash
+curl -X PUT http://localhost:8080/api/tasks/task1/name \
+  -H "Content-Type: application/json" \
+  -d '{"name":"Updated Task"}'
+```
+
+**Get an appointment:**
+```bash
+curl http://localhost:8080/api/appointments/appt1
+```
+
+For complete API documentation, see [ProjectOne/API_DOCUMENTATION.md](ProjectOne/API_DOCUMENTATION.md).
+
+### Testing
+
+The project includes 48 tests with 100% pass rate:
+- 43 unit tests for entities and services
+- 5 integration tests for REST API endpoints
+
+```bash
+mvn test
+```
+
 ---
 
 To ensure that my code, program, or software is both functional and secure, I would follow a comprehensive testing and security strategy. Functionality begins with unit testing, where individual components are tested in isolation. Integration testing follows, verifying that different parts of the program work together correctly. End-to-end testing simulates real-world usage to ensure the complete system performs as expected. Incorporating debugging tools and logging helps trace and fix issues effectively, while peer code reviews enhance quality by catching errors and suggesting improvements. Using version control systems like Git wold allow me to tracking changes and maintaining a stable codebase.
