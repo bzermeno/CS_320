@@ -12,6 +12,29 @@ Project One is a Java-based application demonstrating software testing and quali
 
 Each service implements CRUD operations using HashMap for in-memory storage, ensures data integrity through validation, and includes comprehensive JUnit tests to verify functionality and edge cases.
 
+## Enhancement: RESTful API Layer
+
+The CS_320_Enhancement project now includes a **RESTful API layer** that exposes the service management functionality through standard HTTP endpoints. This enables external clients to interact with the system using JSON-formatted data over HTTP.
+
+### Key Features:
+- **Standard REST Conventions**: Uses HTTP methods (POST, PUT, DELETE) appropriately
+- **JSON Format**: Industry-standard data interchange format
+- **Spring Boot Framework**: Modern, production-ready web framework
+- **Comprehensive Validation**: Request validation and error handling
+- **Thread-Safe**: Uses modern Java date/time APIs
+
+### API Documentation:
+For complete API documentation including endpoints, request/response formats, and usage examples, see:
+- [API Documentation](CS_320_Enhancement/CS_320_Project_One_Enhancement/API_DOCUMENTATION.md)
+
+### Quick Start:
+```bash
+cd CS_320_Enhancement/CS_320_Project_One_Enhancement
+mvn spring-boot:run
+```
+
+The API will be available at `http://localhost:8080/api`
+
 ---
 
 To ensure that my code, program, or software is both functional and secure, I would follow a comprehensive testing and security strategy. Functionality begins with unit testing, where individual components are tested in isolation. Integration testing follows, verifying that different parts of the program work together correctly. End-to-end testing simulates real-world usage to ensure the complete system performs as expected. Incorporating debugging tools and logging helps trace and fix issues effectively, while peer code reviews enhance quality by catching errors and suggesting improvements. Using version control systems like Git wold allow me to tracking changes and maintaining a stable codebase.
