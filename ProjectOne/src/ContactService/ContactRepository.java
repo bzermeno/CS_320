@@ -8,6 +8,8 @@ package ContactService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class ContactRepository {
     // HashMap to hold Contact objects
@@ -45,5 +47,13 @@ public class ContactRepository {
      */
     public void deleteById(String contactID) {
         contacts.remove(contactID);
+    }
+    
+    /**
+     * Returns all contacts
+     * @return Collection of all contacts
+     */
+    public Collection<Contact> findAll() {
+        return new ArrayList<>(contacts.values());
     }
 }

@@ -7,6 +7,8 @@
  */
 package ContactService;
 
+import java.util.Collection;
+
 public class ContactService {
     // Repository for data access
     private final ContactRepository contactRepository;
@@ -59,11 +61,15 @@ public class ContactService {
         contact.setAddress(newAddress);
     }
     
-    private Contact getContact(String contactID) {
+    public Contact getContact(String contactID) {
         Contact contact = contactRepository.findById(contactID);
         if (contact == null) {
             throw new IllegalArgumentException("Contact ID not found");
         }
         return contact;
+    }
+    
+    public Collection<Contact> getAllContacts() {
+        return contactRepository.findAll();
     }
 }

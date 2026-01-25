@@ -8,6 +8,8 @@ package TaskService;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class TaskRepository {
     // HashMap to hold Task objects
@@ -45,5 +47,13 @@ public class TaskRepository {
      */
     public void deleteById(String taskID) {
         tasks.remove(taskID);
+    }
+    
+    /**
+     * Returns all tasks
+     * @return Collection of all tasks
+     */
+    public Collection<Task> findAll() {
+        return new ArrayList<>(tasks.values());
     }
 }

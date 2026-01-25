@@ -7,6 +7,8 @@
  */
 package TaskService;
 
+import java.util.Collection;
+
 public class TaskService {
     // Repository for data access
     private final TaskRepository taskRepository;
@@ -49,11 +51,15 @@ public class TaskService {
         task.setDescription(description);
     }
     
-    private Task getTask(String taskID) {
+    public Task getTask(String taskID) {
         Task task = taskRepository.findById(taskID);
         if (task == null) {
             throw new IllegalArgumentException("Task ID not found");
         }
         return task;
+    }
+    
+    public Collection<Task> getAllTasks() {
+        return taskRepository.findAll();
     }
 }

@@ -7,6 +7,8 @@
 package AppointmentService;
 
 import java.util.HashMap;
+import java.util.Collection;
+import java.util.ArrayList;
 
 public class AppointmentRepository {
     // HashMap to store Appointment objects
@@ -44,5 +46,13 @@ public class AppointmentRepository {
      */
     public void deleteById(String appointmentID) {
         appointments.remove(appointmentID);
+    }
+    
+    /**
+     * Returns all appointments
+     * @return Collection of all appointments
+     */
+    public Collection<Appointment> findAll() {
+        return new ArrayList<>(appointments.values());
     }
 }

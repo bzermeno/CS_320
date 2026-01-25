@@ -7,6 +7,8 @@
  */
 package AppointmentService;
 
+import java.util.Collection;
+
 public class AppointmentService {
     // Repository for data access
     private final AppointmentRepository appointmentRepository;
@@ -38,5 +40,9 @@ public class AppointmentService {
     // getter to retrieve an appointment by appointmentID
     public Appointment getAppointment(String appointmentID) {
         return appointmentRepository.findById(appointmentID);
+    }
+    
+    public Collection<Appointment> getAllAppointments() {
+        return appointmentRepository.findAll();
     }
 }
