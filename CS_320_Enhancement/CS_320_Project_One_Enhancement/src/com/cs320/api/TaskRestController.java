@@ -45,9 +45,23 @@ public class TaskRestController {
     @PostMapping
     public ResponseEntity<Map<String, String>> createTask(@RequestBody Map<String, String> taskData) {
         try {
+            // Validate request body
+            if (taskData == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Request body cannot be null");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+            
             String taskID = taskData.get("taskID");
             String name = taskData.get("name");
             String description = taskData.get("description");
+            
+            // Validate required fields
+            if (taskID == null || name == null || description == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Missing required fields (taskID, name, description)");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
             
             String result = taskController.createTask(taskID, name, description);
             

@@ -46,11 +46,25 @@ public class ContactRestController {
     @PostMapping
     public ResponseEntity<Map<String, String>> createContact(@RequestBody Map<String, String> contactData) {
         try {
+            // Validate request body
+            if (contactData == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Request body cannot be null");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+            
             String contactID = contactData.get("contactID");
             String firstName = contactData.get("firstName");
             String lastName = contactData.get("lastName");
             String phone = contactData.get("phone");
             String address = contactData.get("address");
+            
+            // Validate required fields
+            if (contactID == null || firstName == null || lastName == null || phone == null || address == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Missing required fields (contactID, firstName, lastName, phone, address)");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
             
             String result = contactController.createContact(contactID, firstName, lastName, phone, address);
             

@@ -13,7 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -47,14 +48,27 @@ public class AppointmentRestController {
     @PostMapping
     public ResponseEntity<Map<String, String>> createAppointment(@RequestBody Map<String, String> appointmentData) {
         try {
+            // Validate request body
+            if (appointmentData == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Request body cannot be null");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+            
             String appointmentID = appointmentData.get("appointmentID");
             String dateStr = appointmentData.get("date");
             String description = appointmentData.get("description");
             
-            // Parse date string to Date object (format: yyyy-MM-dd)
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            dateFormat.setLenient(false);
-            Date appointmentDate = dateFormat.parse(dateStr);
+            // Validate required fields
+            if (appointmentID == null || dateStr == null || description == null) {
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Error: Missing required fields (appointmentID, date, description)");
+                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+            }
+            
+            // Parse date string to Date object (format: yyyy-MM-dd) using thread-safe LocalDate
+            LocalDate localDate = LocalDate.parse(dateStr);
+            Date appointmentDate = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
             
             String result = appointmentController.createAppointment(appointmentID, appointmentDate, description);
             
