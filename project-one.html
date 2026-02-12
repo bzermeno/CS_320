@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project One - Original Implementation</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <h1 class="nav-title">CS 320 Portfolio</h1>
+            <ul class="nav-menu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="project-one.html" class="active">Project One</a></li>
+                <li><a href="enhancement.html">Enhancement</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main class="container">
+        <header class="hero">
+            <h1>Project One: Service Management System</h1>
+            <p class="subtitle">Original Implementation with Comprehensive Unit Testing</p>
+        </header>
+
+        <section>
+            <h2>Overview</h2>
+            <p>Project One is a Java-based Service Management System demonstrating software testing and quality assurance principles. This is the original implementation showcasing fundamental object-oriented programming, data validation, and comprehensive unit testing.</p>
+            
+            <div class="details">
+                <p><strong>Technology Stack:</strong> Java, JUnit</p>
+                <p><strong>Key Concepts:</strong> Unit Testing, Data Validation, CRUD Operations, In-Memory Storage</p>
+                <p><strong>GitHub:</strong> <a href="https://github.com/bzermeno/CS_320/tree/main/ProjectOne" target="_blank">View Source Code</a></p>
+            </div>
+        </section>
+
+        <section>
+            <h2>System Components</h2>
+            <p>The system implements three independent service modules, each managing different types of data with strict validation rules:</p>
+
+            <h3>1. ContactService</h3>
+            <p>Manages contact information with the following fields:</p>
+            <ul class="feature-list">
+                <li><strong>Contact ID:</strong> Maximum 10 characters, not null, must be unique</li>
+                <li><strong>First Name:</strong> Maximum 10 characters, not null</li>
+                <li><strong>Last Name:</strong> Maximum 10 characters, not null</li>
+                <li><strong>Phone Number:</strong> Exactly 10 digits, not null</li>
+                <li><strong>Address:</strong> Maximum 30 characters, not null</li>
+            </ul>
+            <p><strong>Operations:</strong> Add contact, delete contact, update first name, update last name, update phone, update address</p>
+
+            <h3>2. TaskService</h3>
+            <p>Manages tasks with the following fields:</p>
+            <ul class="feature-list">
+                <li><strong>Task ID:</strong> Maximum 10 characters, not null, must be unique</li>
+                <li><strong>Name:</strong> Maximum 20 characters, not null</li>
+                <li><strong>Description:</strong> Maximum 50 characters, not null</li>
+            </ul>
+            <p><strong>Operations:</strong> Add task, delete task, update task name, update task description</p>
+
+            <h3>3. AppointmentService</h3>
+            <p>Manages appointments with the following fields:</p>
+            <ul class="feature-list">
+                <li><strong>Appointment ID:</strong> Maximum 10 characters, not null, must be unique</li>
+                <li><strong>Appointment Date:</strong> Must be in the future, not null</li>
+                <li><strong>Description:</strong> Maximum 50 characters, not null</li>
+            </ul>
+            <p><strong>Operations:</strong> Add appointment, delete appointment</p>
+        </section>
+
+        <section>
+            <h2>Technical Implementation</h2>
+            
+            <h3>Data Storage</h3>
+            <p>All services use HashMap for in-memory storage, providing efficient O(1) lookup, insertion, and deletion operations. Each service maintains its own independent storage structure.</p>
+
+            <h3>Validation Strategy</h3>
+            <p>Comprehensive validation is implemented at the entity level to ensure data integrity:</p>
+            <ul>
+                <li>All fields are validated upon object creation</li>
+                <li>Invalid data throws IllegalArgumentException with descriptive messages</li>
+                <li>Null checks prevent NullPointerException issues</li>
+                <li>String length constraints ensure data consistency</li>
+                <li>Date validation ensures appointments are scheduled for future dates</li>
+            </ul>
+
+            <h3>Code Example: Contact Entity</h3>
+            <pre><code>public Contact(String contactID, String firstName, String lastName, 
+               String phone, String address) {
+    if (contactID == null || contactID.length() > 10) {
+        throw new IllegalArgumentException("Invalid contact ID");
+    }
+    if (firstName == null || firstName.length() > 10) {
+        throw new IllegalArgumentException("Invalid first name");
+    }
+    if (phone == null || phone.length() != 10) {
+        throw new IllegalArgumentException("Invalid phone number");
+    }
+    // ... validation continues
+    this.contactID = contactID;
+    this.firstName = firstName;
+    // ... assignment continues
+}</code></pre>
+        </section>
+
+        <section>
+            <h2>Testing Approach</h2>
+            <p>Each service includes comprehensive JUnit tests covering:</p>
+            
+            <h3>Test Coverage</h3>
+            <ul class="feature-list">
+                <li><strong>Happy Path Testing:</strong> Verifies correct behavior with valid inputs</li>
+                <li><strong>Edge Cases:</strong> Tests boundary conditions (max length strings, minimum valid dates)</li>
+                <li><strong>Negative Testing:</strong> Validates proper exception handling for invalid inputs</li>
+                <li><strong>Duplicate Prevention:</strong> Ensures unique ID constraints are enforced</li>
+                <li><strong>CRUD Operations:</strong> Verifies all create, read, update, delete functionality</li>
+            </ul>
+
+            <h3>Test Files</h3>
+            <ul>
+                <li><strong>ContactTest.java:</strong> Tests Contact entity validation</li>
+                <li><strong>ContactServiceTest.java:</strong> Tests ContactService operations</li>
+                <li><strong>TaskTest.java:</strong> Tests Task entity validation</li>
+                <li><strong>TaskServiceTest.java:</strong> Tests TaskService operations</li>
+                <li><strong>AppointmentTest.java:</strong> Tests Appointment entity validation</li>
+                <li><strong>AppointmentServiceTest.java:</strong> Tests AppointmentService operations</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Key Features</h2>
+            <ul class="feature-list">
+                <li><strong>Data Integrity:</strong> Strict validation rules prevent invalid data from entering the system</li>
+                <li><strong>Unique Identifiers:</strong> Each entity has a unique ID that cannot be changed after creation</li>
+                <li><strong>Immutable IDs:</strong> IDs are set during construction and have no setter methods</li>
+                <li><strong>In-Memory Storage:</strong> HashMap provides fast lookups and modifications</li>
+                <li><strong>Exception Handling:</strong> Clear error messages guide users when validation fails</li>
+                <li><strong>Comprehensive Tests:</strong> JUnit tests ensure reliability and correctness</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Project Structure</h2>
+            <div class="architecture-diagram">
+ProjectOne/
+├── bin/                    # Compiled classes
+└── src/
+    ├── ContactService/
+    │   ├── Contact.java           # Entity class
+    │   ├── ContactService.java    # Service class
+    │   ├── ContactTest.java       # Entity tests
+    │   └── ContactServiceTest.java # Service tests
+    ├── TaskService/
+    │   ├── Task.java              # Entity class
+    │   ├── TaskService.java       # Service class
+    │   ├── TaskTest.java          # Entity tests
+    │   └── TaskServiceTest.java   # Service tests
+    └── AppointmentService/
+        ├── Appointment.java       # Entity class
+        ├── AppointmentService.java # Service class
+        ├── AppointmentTest.java   # Entity tests
+        └── AppointmentServiceTest.java # Service tests
+            </div>
+        </section>
+
+        <section>
+            <h2>Lessons Learned</h2>
+            <p>This project reinforced several important software engineering principles:</p>
+            <ul>
+                <li><strong>Validation is Critical:</strong> Early validation prevents cascading errors throughout the system</li>
+                <li><strong>Test-First Mindset:</strong> Writing tests alongside code catches bugs early</li>
+                <li><strong>Clear Error Messages:</strong> Descriptive exceptions help with debugging and user experience</li>
+                <li><strong>Separation of Concerns:</strong> Keeping entities and services separate improves maintainability</li>
+                <li><strong>Immutability Where Appropriate:</strong> Making IDs immutable prevents accidental modification</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>Next Steps</h2>
+            <p>This original implementation served as the foundation for the enhanced version. To see how this project evolved with modern web technologies and architectural improvements, visit the <a href="enhancement.html">Enhancement page</a>.</p>
+            <a href="enhancement.html" class="btn">View Enhancement</a>
+            <a href="index.html" class="btn btn-secondary">Back to Home</a>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 CS 320 Portfolio. Built for educational purposes.</p>
+    </footer>
+</body>
+</html>
